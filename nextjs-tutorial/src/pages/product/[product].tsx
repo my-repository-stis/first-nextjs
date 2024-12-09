@@ -1,12 +1,10 @@
-import { useRouter } from "next/router";
+import DetailProductView from "@/views/product/[product]"
 
 const DetailProductPage = () => {
-    const {query} = useRouter();
     return (
-        <div>
-            <h1>Detail Product</h1>
-            <p>Product : {query.product}</p>
-        </div>
+        <>
+            <DetailProductView/>
+        </>
     )
 }
 

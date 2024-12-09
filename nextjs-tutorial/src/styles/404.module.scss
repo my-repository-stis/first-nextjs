@@ -1,0 +1,16 @@
+@import "./colors.scss";
+
+.notFound{
+    display: flex;
+    justify-content: center;
+    background-color: map-get($map: $schema, $key: notFound);
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    color: lightgray;
+    font-size: 2rem;
+    gap: 100px;
+    &__image{
+        width: 50%;
+    }
+}
