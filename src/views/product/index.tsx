@@ -1,39 +1,44 @@
-import { type } from "next/dist/compiled/@edge-runtime/cookies";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import styles from "./Product.module.scss";
+import { productType } from "@/types/productType";
+import Link from "next/link";
 
-type productType = {
-  id : number,
-  name : string,
-  price : number,
-  size : string
-}
-
-const ProductView = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [products, setProducts] = useState([]);
-  const {push} = useRouter();
-  
-  useEffect(() => {
-    if (!isLogin) {
-      push("/auth/login");
-    }
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/product")
-    .then((res) => res.json())
-    .then((response) => {
-      setProducts(response.data)
-    })
-  })
-
+const ProductView = ({ products }: { products: productType[] }) => {
   return (
-    <div>
-      <h1>Product Page</h1>
-      {products.map((product: productType) => (
-        <div key={product.id}>{product.name}</div>
-      ))}
+    <div className={styles.product}>
+      <h1 className={styles.product__title}>Product</h1>
+      <div className={styles.product__content}>
+        {products.length > 0 ? (
+          <>
+            {products.map((product: productType) => (
+              <Link href={`/product/${product.id}`} className={styles.product__content__item} key={product.id}>
+                <div className={styles.product__content__item__image}>
+                  <img src={product.image} alt={product.name} />
+                </div>
+                <h4 className={styles.product__content__item__name}>
+                  {product.name}
+                </h4>
+                <p className={styles.product__content__item__category}>
+                  {product.category}
+                </p>
+                <p className={styles.product__content__item__price}>
+                  {product.price.toLocaleString("id-ID",{
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
+              </Link>
+            ))}
+          </>
+        ) : (
+        <div className={styles.product__content__skeleton}>
+          <div className={styles.product__content__skeleton__image} />
+          <div className={styles.product__content__skeleton__name} />
+          <div className={styles.product__content__skeleton__category} />
+          <div className={styles.product__content__skeleton__price} />
+        </div>
+        )}
+    
+      </div>
     </div>
   );
 };
