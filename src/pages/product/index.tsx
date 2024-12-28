@@ -13,7 +13,7 @@ const ProductPage = () => {
     fetcher
   );
 
-  console.log(data);
+  // console.log(data);
 
   // kalau pakai useeffect bakal masuk ke product dulu baru diredirect jadi muncul glitch
   // useEffect(() => {
@@ -22,7 +22,7 @@ const ProductPage = () => {
 
   return (
     <div>
-        <ProductView products={isLoading ? [] : data.data} />
+        <ProductView products={isLoading ? [] : data?.data} />
     </div>
   );
 };

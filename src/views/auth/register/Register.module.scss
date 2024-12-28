@@ -5,6 +5,42 @@
     flex-direction: column;
     align-items: center ;
     justify-content: center;
-    background-color: map-get($map: $schema, $key: primary);
+    flex-direction: column;
     height: 100vh;
+    &__error{
+        color: red;
+        margin-bottom: 10px;
+    }
+    &__title{
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    &__form{
+        margin-bottom: 20px;
+        width: 35%;
+        padding: 20px;
+        box-shadow: 0 0 3px rgba($color: #000000, $alpha: 0.5);
+        &__item{
+            display: flex;
+            flex-direction: column;
+            &__input{
+                padding: 10px;
+                margin: 20px 0;
+                background-color: #eee;
+                margin-top: 5px;
+            }
+        }
+        &__button{
+            background-color: #000000;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    }
+    &__link{
+        a{
+            color: #8dd1ec;
+            font-weight: bold;
+        }
+    }
 }
