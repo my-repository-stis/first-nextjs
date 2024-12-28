@@ -29,30 +29,30 @@ const DetailProductPage = ({product} : {product : productType}) => {
 export default DetailProductPage;
 
 // Server side
-// export async function getServerSideProps({params} : {params : string}) {
-//     // fetch data from an API
-//     const res = await fetch(`http://localhost:3000/api/product/${params.product}`);
-//     const response = await res.json();
+export async function getServerSideProps(params : {product : string}) {
+    // fetch data from an API
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/product/${params.product}`);
+    const response = await res.json();
 
-//     return { props: { product: response.data} };
-// }
+    return { props: { product: response.data} };
+}
 
 
 // Static side
-export async function getStaticPaths(){
-    const res = await fetch(`http://localhost:3000/api/product/`);
-    const response = await res.json();
+// export async function getStaticPaths(){
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/product/`);
+//     const response = await res.json();
 
-    const paths = response.data.map((product:productType) => ({
-        params : {product : product.id}
-    }));
+//     const paths = response.data.map((product:productType) => ({
+//         params : {product : product.id}
+//     }));
 
-    return {paths, fallback: false}
-}
+//     return {paths, fallback: false}
+// }
 
-export async function getStaticProps({params} : {params : {product:string}}){
-    const res = await fetch(`http://localhost:3000/api/product/${params.product}`);
-    const data = await res.json();
+// export async function getStaticProps({params} : {params : {product:string}}){
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/product/${params.product}`);
+//     const data = await res.json();
 
-    return {props : {product : data.data}}
-}
+//     return {props : {product : data.data}}
+// }
