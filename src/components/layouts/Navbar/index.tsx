@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className={styles.navbar}>
             <h1 id="navbar"></h1>
             {/* Merender setelah halaman di load, bagus untuk google analytics yang bisa render lama */}
-            <Script strategy="lazyOnload">
+            <Script id="script-title" strategy="lazyOnload">
                 {`document.getElementById("navbar").innerHTML = "Navbar"`}
             </Script>
             {(data && data.user) ? 

@@ -59,7 +59,7 @@ const LoginView = () => {
             })}>Sign In with Google</button>
             </div>
             <p className={styles.login__link}>
-                Don't have an account ? Sign up <Link href="/auth/register">here</Link>
+                Don{"'"}t have an account ? Sign up <Link href="/auth/register">here</Link>
             </p>
         </div>
     );
